@@ -1,4 +1,4 @@
-name: Go Cross-Platform Build
+name: Go build
 
 on:
   push:
@@ -41,4 +41,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: promptbuilder-${{ matrix.os }}-${{ matrix.arch }}
-        path: build/myapp${{ matrix.ext }}
+        path: build/promptbuilder${{ matrix.ext }}
