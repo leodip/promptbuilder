@@ -35,10 +35,10 @@ jobs:
         GOOS: ${{ matrix.os }}
         GOARCH: ${{ matrix.arch }}
       run: |
-        go build -v -o build/myapp${{ matrix.ext }} ./...
+        go build -v -o build/promptbuilder${{ matrix.ext }} ./...
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: myapp-${{ matrix.os }}-${{ matrix.arch }}
+        name: promptbuilder-${{ matrix.os }}-${{ matrix.arch }}
         path: build/myapp${{ matrix.ext }}
