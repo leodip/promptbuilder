@@ -1,52 +1,118 @@
-# promptbuilder
+# PromptBuilder
 
-A command line utility that scans directories for text files based on patterns and combines their contents into a single Markdown file.
+A command-line tool that generates a formatted output of multiple source files. It's particularly useful for preparing code for AI tools.
 
-## Installation
+## Features
 
-```bash
-go build -o promptbuilder
-```
+- Include specific files or entire directories
+- Exclude files by name, extension, or folder
+- Support for both relative and absolute paths
+- Binary file detection and skipping
+- Customizable header text in output
+- Markdown-formatted output
 
-Or, get the binaries [here](https://github.com/leodip/promptbuilder/releases).
+## Binaries
+
+Build it yourself or get the binaries provided [here](https://github.com/leodip/promptbuilder/releases).
 
 ## Usage
 
 ```bash
-./promptbuilder [-input input.txt] [-output output.txt]
+promptbuilder -input input.txt -output output.txt
 ```
+
+Options:
+- `-input`: Input configuration file (default: "input.txt")
+- `-output`: Output file path (default: "output.txt")
 
 ## Configuration File Format
 
+The configuration file consists of two parts:
+1. Header text (optional) - appears at the start of the output file
+2. Configuration directives - separated from header by `---`
+
+### Directives
+
+- `basedir`: Base directory for file operations
+- `include`: Files or directories to include
+- `excludeFolder`: Folders to exclude
+- `excludeExtension`: File extensions to exclude (without the dot)
+- `excludeFile`: Specific files to exclude
+
+### Example Configuration Files
+
+#### Basic Example
 ```
-Optional header text here
-Multiple lines allowed
+Please review these source files.
 ---
-basedir=/path/to/directory
-include=*.go
-include=*.js
-exclude=*.test.js
+basedir=.
+include=src
+excludeFolder=node_modules
+excludeExtension=json
+excludeExtension=md
 ```
 
-### Parameters
+#### Full Stack Project Example
+```
+Review my React + Express application.
+---
+basedir=/home/user/projects/myapp
+include=client/src
+include=server/src
+excludeFolder=node_modules
+excludeFolder=dist
+excludeExtension=json
+excludeExtension=map
+excludeExtension=svg
+excludeFile=.env
+excludeFile=.gitignore
+```
 
-- `basedir`: Starting directory (absolute path required)
-- `include`: File patterns to include
-- `exclude`: File patterns to exclude
+#### Multiple Directories Example
+```
+Review all our utility functions.
+---
+basedir=/home/user/project
+include=src/utils
+include=src/helpers
+include=src/lib
+excludeFolder=node_modules
+excludeFolder=tests
+excludeExtension=js
+excludeFile=index.js
+```
 
-Parameters are case-insensitive.
+## Output Format
 
-## Output
+The tool generates a Markdown-formatted output file with:
+1. Optional header text
+2. File contents in Markdown code blocks
+3. Full file paths as headers
 
-Generates a Markdown file with:
-- Header text (if provided)
-- Each file's content in a code block with its path as header
+## Tips
 
-## Features
+1. Use relative paths with `basedir=.` for portable configurations
+2. Extensions in `excludeExtension` should be specified without the dot (e.g., `excludeExtension=json` not `excludeExtension=.json`)
+3. Exclude unnecessary files to keep output focused
+4. You can exclude specific files using their full path (e.g., `excludeFile=src/config/dev.js`)
+5. Binary files are automatically detected and skipped
+6. Use multiple include directives to select specific directories or files
 
-- Recursive directory scanning
-- Pattern-based file inclusion/exclusion
-- Binary file detection and skipping
-- Case-insensitive configuration
-- Markdown output format
+## Common Extension Exclusions
 
+Here are some commonly used extension exclusions:
+```
+excludeExtension=json
+excludeExtension=md
+excludeExtension=gitignore
+excludeExtension=svg
+excludeExtension=map
+excludeExtension=lock
+excludeExtension=sum
+excludeExtension=mod
+excludeExtension=log
+```
+
+## License
+
+MIT License - feel free to use this in your own projects.
