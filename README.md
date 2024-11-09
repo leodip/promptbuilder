@@ -5,13 +5,15 @@ A command line utility that scans directories for text files based on patterns a
 ## Installation
 
 ```bash
-go build -o fileprocessor
+go build -o promptbuilder
 ```
+
+Or, get the binaries [here](https://github.com/leodip/promptbuilder/releases).
 
 ## Usage
 
 ```bash
-./fileprocessor [-input input.txt] [-output output.txt]
+./promptbuilder [-input input.txt] [-output output.txt]
 ```
 
 ## Configuration File Format
