@@ -1,0 +1,10 @@
+# Binary files
+promptbuilder
+*.exe
+
+# Test files
+input.txt
+output.txt
+
+# OS files
+.DS_Store
