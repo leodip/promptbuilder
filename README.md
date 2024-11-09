@@ -1,4 +1,4 @@
-# File Processor
+# promptbuilder
 
 A Go program that scans directories for text files based on patterns and combines their contents into a single Markdown file.
 
