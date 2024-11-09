@@ -12,6 +12,8 @@ import (
 	"unicode/utf8"
 )
 
+var version = "0.1"
+
 type Config struct {
 	HeaderText string
 	BaseDir    string
@@ -216,6 +218,7 @@ func generateOutput(config *Config, files []string, outputPath string) error {
 }
 
 func main() {
+	fmt.Println("promptbuilder v" + version)
 	// Define command line flags with default values
 	inputFile := flag.String("input", "input.txt", "Input file path (default: input.txt)")
 	outputFile := flag.String("output", "output.txt", "Output file path (default: output.txt)")
